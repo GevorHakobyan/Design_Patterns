@@ -1,14 +1,18 @@
-#include "SomeTool.h"
+#include "SingleTool.h"
+#include <thread>
+
+void ThreadRunner(const std::string& messeage) {
+    auto ptr = patterns::SingleTool::getInstance(messeage);
+    ptr->print();    
+}
 
 int main() {
-    std::string messeage1 = {"this is Ob1"};
-    auto ob1{patterns::SomeTool::getInstance(messeage1)};
-    ob1->printMesseage();
+    std::string messeage1{"ob1"};
+    std::string messeage2{"ob2"};
+    std::thread t1{ThreadRunner, messeage1};
+    std::thread t2{ThreadRunner, messeage2};
 
-    std::string messeage2 = {"this is Ob2"};
-    auto ob2{patterns::SomeTool::getInstance(messeage2)};
-    ob2->printMesseage();
-
-    std::cout << ob1 << " " << ob2 << "\n";
+    t1.join();
+    t2.join();
     return 0;
 }

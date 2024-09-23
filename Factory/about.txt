@@ -1,0 +1,3 @@
+//APLICABILITY//
+    This method sepaerates object construction from the code that actully usses it.
+    So for that reason, it is easier to extend object construction, independently.
